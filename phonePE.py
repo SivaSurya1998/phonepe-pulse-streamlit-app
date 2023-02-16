@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import streamlit as st
-from sqlalchemy import create_engine
 import pymysql
 import mysql.connector
 import pandas as pd
