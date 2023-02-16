@@ -42,7 +42,7 @@ with tab1:
 
     #agg_2019_india=run_query("SELECT * FROM agg_2019_india")
 
-    data=pd.read_sql("SELECT * FROM agg_2019_india",get_connection())
+    data=pd.read_sql("SELECT * FROM agg_2019_india",conn)
     df1=pd.DataFrame(data)
     st.dataframe(data)
 
