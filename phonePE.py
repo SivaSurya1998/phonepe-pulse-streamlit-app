@@ -3,6 +3,21 @@ import streamlit as st
 import pymysql
 import mysql.connector
 import pandas as pd
+
+@st.cache_resource
+def init_connection():
+    return mysql.connector.connect(**st.secrets["mysql"])
+
+conn = init_connection()
+
+@st.cache_data(ttl=600)
+def run_query(query):
+    with conn.cursor() as cur:
+        cur.execute(query)
+        return cur.fetchall()
+
+
+
 st.title("PhonePE")
 tab1,tab2=st.tabs(["graph","Datas"])
 
@@ -15,33 +30,14 @@ with st.sidebar:
 with tab1:
     st.header("plots")
     #mysql server connection
-    mydb = mysql.connector.connect(
-      host="localhost",
-      user="root",
-      password="sivasurya",
-      database="agg_transacdata_india"
-    #auth_plugin='mysql_native_password'
-    )
-    def run_query(query):
-        with mydb.cursor() as cur:
-            cur.execute(query)
-            return cur.fetchall()
-
+    
     databases=run_query("show databases;")
         
     tables=run_query("USE agg_transacdata_india")
 
     tables_list=run_query("show tables;")
-    #for row in tables_list:
-        #st.write(row)
 
     agg_2019_india=run_query("SELECT * FROM agg_2019_india")
-    #for row in agg_2019_india:
-        #st.write(row)
-
-    x=run_query("SELECT tv_q1 FROM agg_2019_india")
-    #st.write(x[0][0],x[1][0])
-
 
     data=pd.read_sql("SELECT * FROM agg_2019_india",mydb)
     df1=pd.DataFrame(data)
@@ -53,8 +49,7 @@ with tab1:
     import plotly.express as px
     fig=px.bar(data,x,y)
     st.plotly_chart(fig)
-
-    
+  
 with tab2:
     st.header("Transaction datas")
     option=st.selectbox("Select",("Q1 2019","Q2 2019","Q3 2019","Q4 2019"))
