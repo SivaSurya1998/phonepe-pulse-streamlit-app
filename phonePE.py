@@ -4,11 +4,13 @@ import pymysql
 import mysql.connector
 import pandas as pd
 
-@st.cache_resource
-def init_connection():
-    return mysql.connector.connect(**st.secrets["mysql"])
+@st.cache(allow_output_mutation=True)
+def get_connection():
+    return create_engine("mssql+pyodbc://root:sivasurya@localhost/agg_transacdata_india?driver=ODBC+Driver+17+for+SQL+Server", 
+    fast_executemany = True
+    )
 
-conn = init_connection()
+conn = get_connection()
 
 @st.cache_data(ttl=600)
 def run_query(query):
