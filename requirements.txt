@@ -2,3 +2,4 @@ PyMySQL
 mysql-connector-python
 plotly
 pyodbc
+sqlalchemy
