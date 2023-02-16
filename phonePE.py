@@ -13,11 +13,11 @@ def get_connection():
 
 conn = get_connection()
 
-@st.cache_data(ttl=600)
-def run_query(query):
-    with conn.cursor() as cur:
-        cur.execute(query)
-        return cur.fetchall()
+#@st.cache_data(ttl=600)
+#def run_query(query):
+    #with conn.cursor() as cur:
+        #cur.execute(query)
+        #return cur.fetchall()
 
 
 
@@ -34,15 +34,15 @@ with tab1:
     st.header("plots")
     #mysql server connection
     
-    databases=run_query("show databases;")
+    #databases=run_query("show databases;")
         
-    tables=run_query("USE agg_transacdata_india")
+    #tables=run_query("USE agg_transacdata_india")
 
-    tables_list=run_query("show tables;")
+    #tables_list=run_query("show tables;")
 
-    agg_2019_india=run_query("SELECT * FROM agg_2019_india")
+    #agg_2019_india=run_query("SELECT * FROM agg_2019_india")
 
-    data=pd.read_sql("SELECT * FROM agg_2019_india",mydb)
+    data=pd.read_sql("SELECT * FROM agg_2019_india",get_connection())
     df1=pd.DataFrame(data)
     st.dataframe(data)
 
