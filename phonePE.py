@@ -41,8 +41,8 @@ with tab1:
     #tables_list=run_query("show tables;")
 
     #agg_2019_india=run_query("SELECT * FROM agg_2019_india")
-
-    data=pd.read_sql("SELECT * FROM agg_2019_india",engine)
+q="SELECT * FROM agg_2019_india"
+    data=pd.read_sql(q,engine)
     df1=pd.DataFrame(data)
     st.dataframe(data)
 
