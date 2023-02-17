@@ -10,9 +10,9 @@ def get_connection():
     return create_engine("mssql+pyodbc://root:sivasurya@localhost/agg_transacdata_india?driver=ODBC+Driver+17+for+SQL+Server", 
     fast_executemany = True
     )
-Try:
+try:
     conn = get_connection()
-Except:
+except:
     st.write("connection error")
 #@st.cache_data(ttl=600)
 #def run_query(query):
