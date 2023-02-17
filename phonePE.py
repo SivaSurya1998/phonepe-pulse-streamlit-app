@@ -13,7 +13,6 @@ def get_connection():
     fast_executemany = True
     )
 conn = get_connection()
-write("connection error")
 #@st.cache_data(ttl=600)
 #def run_query(query):
     #with conn.cursor() as cur:
