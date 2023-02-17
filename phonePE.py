@@ -3,7 +3,7 @@ import streamlit as st
 import pymysql
 import mysql.connector
 import pandas as pd
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, text
 
 
 engine =create_engine("mssql+pyodbc://root:sivasurya@localhost/agg_transacdata_india?driver=ODBC+Driver+17+for+SQL+Server",)
@@ -42,7 +42,7 @@ with tab1:
 
     #agg_2019_india=run_query("SELECT * FROM agg_2019_india")
     q="SELECT * FROM agg_2019_india"
-    data=pd.read_sql(q,engine)
+    data=pd.read_sql(sql=text(q),con=engine.connect())
     df1=pd.DataFrame(data)
     st.dataframe(data)
 
