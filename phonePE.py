@@ -5,15 +5,17 @@ import mysql.connector
 import pandas as pd
 from sqlalchemy import create_engine
 
+
+engine = sqlalchemy.create_engine(
+    "mssql+pyodbc://root:sivasurya@localhost/agg_transacdata_india?driver=ODBC+Driver+17+for+SQL+Server", 
+    )
 @st.cache(allow_output_mutation=True)
 def get_connection():
     return create_engine("mssql+pyodbc://root:sivasurya@localhost/agg_transacdata_india?driver=ODBC+Driver+17+for+SQL+Server", 
     fast_executemany = True
     )
-try:
-    conn = get_connection()
-except:
-    st.write("connection error")
+conn = get_connection()
+write("connection error")
 #@st.cache_data(ttl=600)
 #def run_query(query):
     #with conn.cursor() as cur:
@@ -43,7 +45,7 @@ with tab1:
 
     #agg_2019_india=run_query("SELECT * FROM agg_2019_india")
 
-    data=pd.read_sql("SELECT * FROM agg_2019_india",conn)
+    data=pd.read_sql("SELECT * FROM agg_2019_india",engine)
     df1=pd.DataFrame(data)
     st.dataframe(data)
 
