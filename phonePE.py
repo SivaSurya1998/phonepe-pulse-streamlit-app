@@ -6,9 +6,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 
-engine = sqlalchemy.create_engine(
-    "mssql+pyodbc://root:sivasurya@localhost/agg_transacdata_india?driver=ODBC+Driver+17+for+SQL+Server", 
-    )
+engine =create_engine("mssql+pyodbc://root:sivasurya@localhost/agg_transacdata_india?driver=ODBC+Driver+17+for+SQL+Server",)
 @st.cache(allow_output_mutation=True)
 def get_connection():
     return create_engine("mssql+pyodbc://root:sivasurya@localhost/agg_transacdata_india?driver=ODBC+Driver+17+for+SQL+Server", 
