@@ -2,7 +2,6 @@
 import streamlit as st
 import sqlite3
 from sqlalchemy import create_engine
-import pymysql
 import mysql.connector
 import pandas as pd
 st.title("PhonePE")
