@@ -4,3 +4,4 @@ plotly
 pyodbc
 sqlalchemy
 sqlite3
+pip==23.0.1
