@@ -7,7 +7,7 @@ st.title("PhonePE")
 tab1,tab2=st.tabs(["graph","Datas"])
 
 
-conn=sqlite3.connect(**phonepe.db)
+conn=sqlite3.connect("phonepe.db")
 print('Connection good')
 cursor=conn.execute("""Select * from agg_2019_india;""")
 data=pd.read_sql("""Select * from agg_2019_india;""",conn)
