@@ -2,4 +2,5 @@ plotly
 db-sqlite3
 pip==23.0.1
 streamlit
-json
+geopandas==0.10.2
+
