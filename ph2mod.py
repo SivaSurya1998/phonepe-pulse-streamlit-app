@@ -45,7 +45,7 @@ def show_dataframe(df, quarter):
     
 def generate_choropleth_map(data):
     # Load the GeoJSON data for India's states
-    with open('india_states.geojson') as f:
+    with open('india_states.geojson.txt') as f:
         india_states = json.load(f)
 
     # Create the choropleth map
