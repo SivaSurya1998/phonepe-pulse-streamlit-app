@@ -13,7 +13,7 @@ import json
 import plotly.graph_objects as go
 
 # Connect to database
-conn = sqlite3.connect(r"\Users\THIS PC\OneDrive\Desktop\phonepe\db\phonepedb.db")
+conn = sqlite3.connect(r"phonepedb.db")
 
 # Read data from database tables
 agg_data_2018 = pd.read_sql("""Select * from agg_2018_india;""", conn)
