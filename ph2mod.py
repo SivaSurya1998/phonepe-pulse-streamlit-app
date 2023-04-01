@@ -13,7 +13,7 @@ import json
 import plotly.graph_objects as go
 
 # Connect to database
-conn = sqlite3.connect(r"\Users\THIS PC\OneDrive\Desktop\phonepe\db\phonepedb.db")
+conn = sqlite3.connect(r"phonepedb.db")
 
 
 # Define UI using Streamlit
@@ -33,7 +33,7 @@ def show_dataframe(df, quarter):
     
 def generate_choropleth_map(data,quarter_map):
     # Load the GeoJSON data for India's states
-    with open(r"\Users\THIS PC\Downloads\india_states.geojson.txt") as f:
+    with open(r"india_states.geojson.txt") as f:
         india_states = json.load(f)
 
     # Create the choropleth map
